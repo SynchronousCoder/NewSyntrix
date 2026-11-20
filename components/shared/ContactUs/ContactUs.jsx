@@ -1,19 +1,29 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
+import trafficLightArtwork from "../../../public/trafficlight.png";
+import "./ContactUs.css";
 
 export default function ContactUs() {
+  const pathname = usePathname();
+  const showTopline = pathname === "/";
+  const eyebrow = pathname === "/contact" ? "/ Contact Us" : pathname === "/about" ? "04 / Contact Us" : pathname === "/services" ? "06 / Contact Us" : "04 / Contact Us";
+
   return (
     <section id="contact" className="contact">
       <div className="site-shell contact-inner">
-        <div className="contact-topline" />
+        {showTopline && <div className="contact-topline" aria-hidden="true" />}
 
         <div className="contact-layout">
           <div className="contact-visual">
-            <img src="/trafficlight.png" alt="Traffic light showing green" />
+            <Image src={trafficLightArtwork} alt="What are you waiting for?" />
           </div>
 
           <div className="contact-content">
             <div>
-              <span className="contact-eyebrow">04 / Contact Us</span>
+              <span className="contact-eyebrow">{eyebrow}</span>
               <h2 className="contact-title">
                 Let&apos;s Build Something Bold
               </h2>

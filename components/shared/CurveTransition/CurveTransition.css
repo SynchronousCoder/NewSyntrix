@@ -1,0 +1,14 @@
+.curve-transition-bleed {
+  --curve-bleed: clamp(0.375rem, 1.7vw, 1.5625rem);
+  width: calc(100% + var(--curve-bleed));
+  margin-inline-start: calc(var(--curve-bleed) * -1);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.curve-transition {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1465 / 379;
+}

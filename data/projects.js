@@ -5,6 +5,7 @@ export const projects = [
     href: "/work/nayora",
     image: "https://ik.imagekit.io/m9zi40oov/compress%20img/nayora.png?updatedAt=1782026239113",
     imageAlt: "Nayora jewellery website project",
+    tags: ["Branding", "Website", "Marketing"],
   },
   {
     name: "K72",
@@ -12,6 +13,7 @@ export const projects = [
     href: "/work/k72",
     image: "https://ik.imagekit.io/m9zi40oov/compress%20img/k72.png?updatedAt=1782026239284",
     imageAlt: "K72 marketing agency website project",
+    tags: ["Branding", "Website"],
   },
   {
     name: "Coder's Cup",
@@ -19,6 +21,7 @@ export const projects = [
     href: "/work/coders-cup",
     image: "https://ik.imagekit.io/m9zi40oov/compress%20img/coder.png?updatedAt=1782026239168",
     imageAlt: "Coder's Cup website project",
+    tags: ["Branding", "Website"],
   },
   {
     name: "VACOU",
@@ -26,5 +29,14 @@ export const projects = [
     href: "/work/vacou",
     image: "https://ik.imagekit.io/m9zi40oov/bloom_texture_cleanup.png?updatedAt=1781728064165",
     imageAlt: "VACOU restaurant website project",
+    tags: ["Website"],
+  },
+  {
+    name: "Simplify",
+    category: "Creator Meetup Delhi",
+    href: "/projects#simplify",
+    image: "",
+    imageAlt: "",
+    tags: ["Website"],
   },
 ];

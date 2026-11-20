@@ -1,3 +1,5 @@
+import "./WhatWeDo.css";
+
 export default function WhatWeDo() {
   return (
     <section id="about" className="section site-shell">

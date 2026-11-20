@@ -1,0 +1,154 @@
+/* =====================================================
+   HERO
+   Layout: stage (3D ring + title) on top, text + CTA below.
+   Title is sized in container units so it fits EXACTLY
+   between the two content lines.
+===================================================== */
+
+.syntrix-hero {
+  --title-fit: 42; /* raise/lower by 0.5 if edges are a few px off */
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: var(--section-min-h);
+  overflow: hidden;
+  background: var(--color-hero-bg);
+}
+
+.hero-stage {
+  position: relative;
+  flex: 1;
+  min-height: 22rem;
+}
+
+/* Both transparent Three.js canvases fill the stage */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.hero-canvas.is-ready {
+  opacity: 1;
+}
+
+.hero-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Back half: behind SYNTRIX */
+.hero-canvas--back {
+  z-index: 1;
+}
+
+/* Typography layer: same edges as every other section */
+.hero-title-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: min(100%, var(--content-max));
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+  pointer-events: none;
+}
+
+.hero-title-fit {
+  container-type: inline-size;
+  width: 100%;
+}
+
+.hero-title {
+  width: 100%;
+  margin: 0;
+  padding-right: 0.05em; /* balances the negative letter-spacing */
+  color: #000;
+  font-family: var(--font-display-face);
+  font-size: calc(var(--title-fit) * 1cqw);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Front half: above SYNTRIX */
+.hero-canvas--front {
+  z-index: 3;
+}
+
+/* WebGL fallback */
+.hero-canvas-fallback {
+  position: absolute;
+  inset: 0;
+  background: var(--color-hero-bg);
+}
+
+/* Subheading (left) + CTA (right) */
+.hero-bottom {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding-block: var(--space-6) var(--space-8);
+}
+
+.hero-subheading {
+  max-width: 26rem;
+  margin: 0;
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: var(--cta-width);
+  aspect-ratio: var(--cta-ratio);
+  padding: var(--space-3);
+  background: #000;
+  color: #fff;
+  font-size: var(--cta-font);
+  font-weight: 500;
+  line-height: 1;
+  transition:
+    background var(--motion-fast),
+    color var(--motion-fast);
+}
+
+.hero-cta-icon {
+  align-self: flex-end;
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: transform var(--motion-fast);
+}
+
+.hero-cta:hover {
+  background: var(--color-accent);
+  color: #000;
+}
+
+.hero-cta:hover .hero-cta-icon {
+  transform: translateX(2px);
+}
+
+
+
+@media (max-width: 700px) {
+  .hero-stage { min-height: 18rem; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: var(--space-5); }
+}

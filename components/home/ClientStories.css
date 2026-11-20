@@ -1,0 +1,149 @@
+/* =====================================================
+   03 / CLIENT STORIES
+===================================================== */
+
+.client-stories {
+  overflow: hidden;
+  border-bottom: 1.5px solid var(--color-line);
+}
+
+/* ---------- Story 1 (light) ---------- */
+
+.client-inner {
+  padding: var(--space-8) var(--page-gutter) clamp(2rem, 5vw, 5rem);
+}
+
+.client-topline {
+  padding-top: var(--space-3);
+}
+
+.client-eyebrow {
+  font-size: var(--font-sm);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* ---------- Shared story row ---------- */
+
+.client-layout {
+  display: grid;
+  grid-template-columns: var(--grid-2col);
+  align-items: center;
+  column-gap: var(--col-gap);
+}
+
+.client-layout--light {
+  margin-top: clamp(3rem, 8vw, 8rem);
+}
+
+.client-logo {
+  min-width: 0;
+}
+
+.client-logo img {
+  width: clamp(9rem, 26vw, 24rem);
+  max-width: 100%;
+  height: auto;
+}
+
+.client-story {
+  min-width: 0;
+  margin: 0;
+}
+
+.client-quote {
+  max-width: 36rem;
+  margin: 0;
+  font-size: clamp(1.25rem, 2.1vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.client-author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--space-8);
+  font-size: var(--font-xs);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.client-name {
+  font-weight: 500;
+}
+
+.client-role {
+  color: var(--color-muted);
+}
+
+/* ---------- Story 2 (dark, on the vector) ---------- */
+
+.client-dark {
+  --curve-h: 25.87vw;      /* curve height (Figma ratio 1465 x 379) */
+  --curve-lift: 4vw;       /* raise the vector: bigger = higher */
+
+  position: relative;
+  isolation: isolate;
+  min-height: var(--curve-h);
+  margin-top: calc(-1 * var(--curve-lift));
+  color: var(--color-dark);                /* drives the SVG fill and black body */
+}
+
+/* curve */
+.client-vector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--curve-h);
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* black body below the curve, fills the rest of the section */
+.client-dark::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--curve-h) - 1px) 0 0 0;
+  background: currentColor;
+  z-index: 0;
+}
+
+/* content sits above the vector, always inside the black area */
+.client-dark-inner {
+  position: relative;
+  z-index: 1;
+  color: var(--color-on-dark);
+  padding:
+    calc(var(--curve-h) * 0.5 + 1.5rem)
+    var(--page-gutter)
+    clamp(2.5rem, 6vw, 6rem);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 700px) {
+  .client-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .client-layout--light { margin-top: var(--space-12); }
+  .client-logo img { width: clamp(8rem, 45vw, 14rem); }
+  .client-author { margin-top: var(--space-5); }
+
+  .client-dark {
+    --curve-h: 34vw;
+    --curve-lift: 3vw;
+  }
+
+  .client-dark-inner {
+    padding-top: calc(var(--curve-h) * 0.5 + 2rem);
+    padding-bottom: var(--space-12);
+  }
+}

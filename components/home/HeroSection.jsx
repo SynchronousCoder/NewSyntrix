@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import "./HeroSection.css";
 
 /* Three.js loads after the title has painted, so the page feels instant */
 const HeroRing = dynamic(() => import("./HeroRing"), { ssr: false });
@@ -62,7 +63,7 @@ export default function HeroSection() {
           development built to captivate audiences and move businesses forward.
         </p>
 
-        <Link href="/contact" className="hero-cta">
+        <Link href="/#contact" className="hero-cta">
           <svg
             className="hero-cta-icon"
             viewBox="0 0 24 24"

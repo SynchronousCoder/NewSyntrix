@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import "./Footer.css";
 
 const EMAIL = "wesyntrix@gmail.com";
 
@@ -12,27 +13,19 @@ export default function CopyMailCard() {
       await navigator.clipboard.writeText(EMAIL);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
-    } catch {
-      window.location.href = `mailto:${EMAIL}`;
-    }
+    } catch { setCopied(false); }
   };
 
   return (
-    <button
-      type="button"
-      className="footer-card footer-card--light"
-      onClick={copy}
-      aria-label={`Copy email address ${EMAIL}`}
-    >
+    <div className="footer-card footer-card--light">
       <span>
-        <span className="footer-card-label">
-          / {copied ? "Copied to clipboard" : "Copy mail"}
-        </span>
+        <span className="footer-card-label">/ {copied ? "Copied to clipboard" : "Copy mail"}</span>
         <span className="footer-card-title">Prefer mail?</span>
       </span>
 
       <span className="footer-card-action">
-        {EMAIL}
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <button type="button" onClick={copy} aria-label={`Copy ${EMAIL}`}>
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -42,8 +35,8 @@ export default function CopyMailCard() {
         >
           <circle cx="12" cy="12" r="9.5" />
           <path d="M8.5 12h7M12.5 8.5 16 12l-3.5 3.5" />
-        </svg>
+        </svg></button>
       </span>
-    </button>
+    </div>
   );
 }
