@@ -15,6 +15,18 @@
 
   --font-sans: "DM Sans", Arial, sans-serif;
   --font-display-face: "Bebas Neue", Impact, sans-serif;
+  --fs-hero-h1: clamp(48px, 7vw, 96px);
+  --fs-hero-sub: clamp(16px, 1.4vw, 20px);
+  --lh-hero-h1: 1.034;
+  --ls-hero-h1: -0.04em;
+  --fs-section-heading: clamp(32px, 6vw, 88px);
+  --lh-section-heading: 1;
+  --ls-section-heading: -0.06em;
+  --fs-subheading: clamp(20px, 2.2vw, 32px);
+  --lh-subheading: 1.12;
+  --ls-subheading: -0.035em;
+  --content-axis: 49.7%;
+  --axis-gap: clamp(16px, 2vw, 32px);
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;

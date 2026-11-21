@@ -1,0 +1,53 @@
+.reveal-image {
+  position: relative;
+  display: block;
+  overflow: visible;
+  clip-path: none;
+}
+/* Release only the identified image frames while their image travels outside the frame. */
+/* Restore every clipping ancestor only while its registered image is dropping. */
+.is-image-dropping {
+  overflow: visible !important;
+}
+.reveal-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: center;
+}
+.reveal-image img[style*="position: absolute"] {
+  height: 100%;
+  object-fit: cover;
+}
+.is-image-dropping img[data-motion-image] {
+  transition: none !important;
+}
+.reveal-text {
+  will-change: transform, opacity;
+}
+
+
+.motion-line-mask {
+  overflow: hidden;
+}
+.specialization-progress {
+  height: 2px;
+  overflow: hidden;
+}
+.specialization-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-image {
+    clip-path: none !important;
+  }
+  .reveal-text {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -19,13 +19,23 @@ export default function FeaturedProjects() {
       <div className="projects-grid">
         {featuredProjects.map((project) => (
           <article className="project-card" key={project.name}>
-            <Link href={project.href} aria-label={`View ${project.name} project`}>
+            <Link
+              href={project.href}
+              aria-label={`View ${project.name} project`}
+            >
               <div className="project-visual">
                 {project.image ? (
                   // Use a regular img for now; replace with next/image when real assets are in place.
-                  <img src={project.image} alt={project.imageAlt} loading="lazy" />
+                  <img
+                    data-motion-image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    loading="lazy"
+                  />
                 ) : (
-                  <span className="project-placeholder-label">Project image</span>
+                  <span className="project-placeholder-label">
+                    Project image
+                  </span>
                 )}
               </div>
               <div className="project-caption">

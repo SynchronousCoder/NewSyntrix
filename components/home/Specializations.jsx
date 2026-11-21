@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useServicesAccordion } from "../animations/useServicesAccordion";
 import "./Specializations.css";
 
 const specializations = [
@@ -29,7 +29,7 @@ const specializations = [
 ];
 
 export default function Specializations() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const { root, openIndex, activate, setHovered } = useServicesAccordion(specializations.length);
 
   return (
     <section id="services" className="section site-shell">
@@ -45,7 +45,7 @@ export default function Specializations() {
           />
         </div>
 
-        <div className="specializations-content">
+        <div className="specializations-content" ref={root} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
           <div className="specializations-list">
             {specializations.map((item, index) => {
               const isOpen = openIndex === index;
@@ -55,15 +55,14 @@ export default function Specializations() {
                 <div
                   className="specialization-item"
                   key={item.title}
+                  onMouseEnter={() => activate(index)}
                 >
                   <button
                     className="specialization-trigger"
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={panelId}
-                    onClick={() =>
-                      setOpenIndex(isOpen ? -1 : index)
-                    }
+                    onClick={() => activate(index)}
                   >
                     <span>{item.title}</span>
 
@@ -75,15 +74,12 @@ export default function Specializations() {
                     </span>
                   </button>
 
-                  <div
-                    className="specialization-panel"
-                    id={panelId}
-                    hidden={!isOpen}
-                  >
+                  <div className="specialization-panel" id={panelId} aria-hidden={!isOpen}>
                     <p className="specialization-detail">
                       {item.description}
                     </p>
                   </div>
+                  <div className="specialization-progress" aria-hidden="true"><span /></div>
                 </div>
               );
             })}

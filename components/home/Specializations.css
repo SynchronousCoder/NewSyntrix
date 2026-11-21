@@ -92,9 +92,7 @@
   letter-spacing: 0;
 }
 
-.specialization-panel[hidden] {
-  display: none;
-}
+.specialization-panel { overflow: hidden; }
 
 .specialization-detail {
   max-width: 28rem;
@@ -104,6 +102,8 @@
   font-size: clamp(1rem, 1.4vw, 1.25rem);
   line-height: 1.3;
 }
+.specialization-progress { background: transparent; }
+.specialization-progress span { background: #111; }
 
 /* Button stays below the specialization list */
 .view-services {

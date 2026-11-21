@@ -1,22 +1,24 @@
 .services-intro {
   display: grid;
-  grid-template-columns: var(--grid-2col);
-  column-gap: var(--col-gap);
+  grid-template-columns: var(--content-axis) minmax(0, 1fr);
+  column-gap: var(--axis-gap);
   align-items: start;
   padding-top: var(--space-5);
   padding-bottom: var(--space-12);
 }
 .services-intro-art {
+  position: relative;
   align-self: start;
   width: min(100%, 29.27rem); /* 468.25px, Figma width */
   aspect-ratio: 468.25 / 832;
   overflow: hidden;
   border-radius: var(--radius-md);
-  background: url("/cometakesit.png") center / cover no-repeat;
+  background: var(--color-surface);
 }
+.motion-background-layer { position:absolute; inset:0; display:block; background-position:center; background-size:cover; background-repeat:no-repeat; }
+.services-intro-art .motion-background-layer { background-image:url("/cometakesit.png"); }
 .services-intro-copy {
   min-width: 0;
-  padding-top: var(--space-4);
 }
 .services-eyebrow {
   display: block;
@@ -27,16 +29,16 @@
 }
 .services-intro .services-intro-title {
   margin: var(--space-6) 0 0;
-  font-size: clamp(3.5rem, 6.667vw, 6rem);
+  font-size: var(--fs-hero-h1);
   font-weight: 600;
-  line-height: 1.034;
-  letter-spacing: -0.04em;
+  line-height: var(--lh-hero-h1);
+  letter-spacing: var(--ls-hero-h1);
 }
 .services-intro .services-intro-text {
   max-width: 28rem;
   margin: clamp(3rem, 6.5vw, 5.875rem) 0 0;
-  font-size: clamp(1rem, 1.39vw, 1.25rem);
-  font-weight: 400;
+  font-size: var(--fs-hero-sub);
+  font-weight: 500;
   line-height: 1.15;
 }
 
@@ -54,28 +56,30 @@
 }
 .service-heading {
   display: grid;
-  grid-template-columns: var(--grid-2col);
-  column-gap: var(--col-gap);
+  grid-template-columns: var(--content-axis) minmax(0, 1fr);
+  column-gap: var(--axis-gap);
 }
 .service-heading h2 {
   grid-column: 2;
   min-height: 11rem;
   margin: var(--space-8) 0 var(--space-8);
-  font-size: clamp(3.5rem, 6.5vw, 6.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.065em;
-  font-weight: 400;
+  font-size: var(--fs-section-heading);
+  line-height: var(--lh-section-heading);
+  letter-spacing: var(--ls-section-heading);
+  font-weight: 500;
 }
 .service-details {
   display: grid;
-  grid-template-columns: var(--grid-2col);
-  column-gap: var(--col-gap);
+  grid-template-columns: var(--content-axis) minmax(0, 1fr);
+  column-gap: var(--axis-gap);
   align-items: end;
 }
 .service-direction h3,
 .service-list h3 {
   margin: 0 0 var(--space-2);
-  font-size: var(--font-xl);
+  font-size: var(--fs-subheading);
+  line-height: var(--lh-subheading);
+  letter-spacing: var(--ls-subheading);
   font-weight: 500;
 }
 .service-direction p {
@@ -167,26 +171,29 @@
 }
 .why-section {
   display: grid;
-  grid-template-columns: var(--grid-2col);
-  column-gap: var(--col-gap);
+  grid-template-columns: var(--content-axis) minmax(0, 1fr);
+  column-gap: var(--axis-gap);
   padding-top: var(--space-8);
   padding-bottom: var(--space-24);
   border-top: 1px solid var(--color-topline-line);
 }
 .why-left h2 {
   margin: 0;
-  font-size: clamp(4rem, 8vw, 7rem);
-  line-height: 0.95;
-  letter-spacing: -0.07em;
+  font-size: var(--fs-section-heading);
+  line-height: var(--lh-section-heading);
+  letter-spacing: var(--ls-section-heading);
   font-weight: 500;
 }
 .why-art {
+  position: relative;
   width: min(70%, 22rem);
   aspect-ratio: 1;
   margin-top: var(--space-8);
   border-radius: var(--radius-md);
-  background: #064cb4 url("/analysisOutput.png") center / cover no-repeat;
+  overflow: hidden;
+  background: #064cb4;
 }
+.why-art .motion-background-layer { background-image:url("/analysisOutput.png"); }
 .why-copy {
   max-width: 20rem;
   font-size: var(--font-xs);
@@ -228,22 +235,13 @@
   .services-intro {
     grid-template-columns: minmax(0, 1fr);
     row-gap: var(--space-8);
-    padding-top: var(--space-4);
+    padding-top: var(--space-5);
     padding-bottom: var(--space-8);
   }
+  .services-intro-copy { grid-row:1; }
+  .services-intro-art { grid-row:2; }
   .services-intro-art {
     width: min(100%, 24rem);
-  }
-  .services-intro-copy {
-    padding-top: 0;
-  }
-  .services-intro .services-intro-title {
-    margin-top: var(--space-4);
-    font-size: clamp(3.5rem, 17vw, 5.5rem);
-  }
-  .services-intro .services-intro-text {
-    max-width: none;
-    margin-top: var(--space-6);
   }
   .services-desktop-break {
     display: none;
@@ -258,7 +256,7 @@
     grid-column: 1;
     min-height: 0;
     margin: var(--space-6) 0 var(--space-8);
-    font-size: clamp(3rem, 13vw, 5rem);
+    font-size: var(--fs-section-heading);
   }
   .service-details {
     grid-template-columns: minmax(0, 1fr);
