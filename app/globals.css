@@ -12,6 +12,7 @@
   --color-accent: #dfff00;
   --color-hero-bg: #f5f4f0;
   --color-nav: #b5b1ae;
+  --color-separator: #F2F2F2;
 
   --font-sans: "DM Sans", Arial, sans-serif;
   --font-display-face: "Bebas Neue", Impact, sans-serif;
@@ -151,10 +152,13 @@ a:focus-visible {
   padding-inline: var(--page-gutter);
 }
 
+/** 04 — Shared section styles
+ * The grey line at bottom of each section 
+ */
 .section {
   min-height: var(--section-min-h);
   padding: var(--space-8) var(--page-gutter) var(--space-8);
-  border-bottom: 1.5px solid var(--color-line);
+  border-bottom: 2.5px solid var(--color-separator);
 }
 
 .section-topline {

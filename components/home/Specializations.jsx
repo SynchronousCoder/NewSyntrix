@@ -1,8 +1,9 @@
-
 "use client";
 
 import Link from "next/link";
+import { useRef } from "react";
 import { useServicesAccordion } from "../animations/useServicesAccordion";
+import { useImageReveal } from "../animations/useImageReveal";
 import "./Specializations.css";
 
 const specializations = [
@@ -30,6 +31,12 @@ const specializations = [
 
 export default function Specializations() {
   const { root, openIndex, activate, setHovered } = useServicesAccordion(specializations.length);
+  const artRef = useRef(null);
+
+  // Apply centralized reveal image animation to the specializations-art wrapper (border-radius: var(--radius-md) = 10px)
+  useImageReveal(artRef, {
+    borderRadius: "10px",
+  });
 
   return (
     <section id="services" className="section site-shell">
@@ -38,8 +45,9 @@ export default function Specializations() {
       </div>
 
       <div className="specializations-layout">
-        <div className="specializations-art">
+        <div className="specializations-art" ref={artRef}>
           <img
+            data-motion="off"
             src="/calculator.png"
             alt="Syntrix creative concept visual"
           />

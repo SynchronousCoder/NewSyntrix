@@ -1,12 +1,22 @@
+"use client";
 
-import "./Projects.css";
+import { useRef } from "react";
 import PageHeader from "../shared/PageHeader";
+import { useImageReveal } from "../animations/useImageReveal";
+import "./Projects.css";
 
 export default function ProjectsIntro() {
+  const artRef = useRef(null);
+
+  useImageReveal(artRef, {
+    borderRadius: "10px",
+  });
+
   return (
     <section className="projects-intro container">
-      <div className="projects-intro-art">
+      <div className="projects-intro-art" ref={artRef}>
         <img
+          data-motion="off"
           src="/proof.png"
           alt="Proof over promise"
           className="projects-intro-image"

@@ -34,7 +34,7 @@
 }
 
 .hero-canvas.is-ready {
-  opacity: 1;
+  opacity: var(--ring-o, 1); /* driven by GSAP so the ring can fade in after the text */
 }
 
 .hero-canvas canvas {
@@ -70,7 +70,7 @@
   width: 100%;
   margin: 0;
   padding-right: 0.05em; /* balances the negative letter-spacing */
-  color: #000;
+  color: rgb(217, 217, 217);
   font-family: var(--font-display-face);
   font-size: calc(var(--title-fit) * 1cqw);
   font-weight: 400;

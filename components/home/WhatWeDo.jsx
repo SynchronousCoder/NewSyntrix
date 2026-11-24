@@ -1,11 +1,22 @@
+"use client";
+
+import { useRef } from "react";
+import { useImageReveal } from "../animations/useImageReveal";
 import "./WhatWeDo.css";
 
 export default function WhatWeDo() {
+  const visualRef = useRef(null);
+
+  // Apply centralized reveal image animation to the billboard image wrapper (border-radius: 10px)
+  useImageReveal(visualRef, {
+    borderRadius: "10px",
+  });
+
   return (
     <section id="about" className="section site-shell">
       <div className="section-topline"></div>
 
-      <h1 className="intro-statement">
+      <h1 className="intro-statement" data-no-reveal>
         Syntrix is the digital partner that turns your brand&apos;s potential
         into progress. We bring strategy, design, and technology together to
         build websites that move your business forward.
@@ -22,8 +33,9 @@ export default function WhatWeDo() {
           </p>
         </div>
 
-        <div className="visual-placeholder">
+        <div className="visual-placeholder" ref={visualRef}>
           <img
+            data-motion="off"
             src="/BillboardBranding.png"
             alt="Syntrix billboard branding campaign"
             className="billboard-image"
