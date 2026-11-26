@@ -3,13 +3,24 @@
 import { useRef } from "react";
 import PageHeader from "../shared/PageHeader";
 import { useImageReveal } from "../animations/useImageReveal";
+import { useColorWave } from "../animations/useColorWave";
+import WAVE_COLORS from "../animations/waveColors";
+import "../pages/Editorial.css";
 import "./Projects.css";
 
 export default function ProjectsIntro() {
   const artRef = useRef(null);
+  const titleRef = useRef(null);
 
   useImageReveal(artRef, {
     borderRadius: "10px",
+  });
+
+  useColorWave(titleRef, {
+    waveWidth: 4,
+    secondsPerChar: 0.08,
+    triggerMode: "idle",
+    peakColor: WAVE_COLORS.projects,
   });
 
   return (
@@ -23,7 +34,13 @@ export default function ProjectsIntro() {
         />
       </div>
 
-      <PageHeader className="projects-intro-copy" label="/ Projects" title={<>Our<br />Work</>} description="Selected work across branding, digital experiences, and systems designed to move businesses forward." />
+      <PageHeader
+        ref={titleRef}
+        className="projects-intro-copy"
+        label="/ Projects"
+        title={<>Our<br />Work</>}
+        description="Selected work across branding, digital experiences, and systems designed to move businesses forward."
+      />
     </section>
   );
 }

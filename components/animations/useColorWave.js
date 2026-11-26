@@ -13,6 +13,7 @@ import { gsap } from "./gsapSetup";
  * @param {number} options.secondsPerChar - time per char in the wave (default ~0.08)
  * @param {string} options.triggerMode - "idle" (e.g. for hero) or "scroll" (via ScrollTrigger)
  * @param {string} options.scrollStart - ScrollTrigger start position if triggerMode === "scroll" (default "top 85%")
+ * @param {string} options.peakColor - colour at the wave's peak (default "#DFFF00")
  * @param {Function} options.onComplete - callback when wave finishes (e.g. to reveal hero ring)
  */
 export function useColorWave(titleRef, options = {}) {
@@ -21,6 +22,7 @@ export function useColorWave(titleRef, options = {}) {
     secondsPerChar = 0.08,
     triggerMode = "idle",
     scrollStart = "top 85%",
+    peakColor = "#DFFF00",
     onComplete,
   } = options;
 
@@ -36,7 +38,7 @@ export function useColorWave(titleRef, options = {}) {
 
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (query.matches) {
-      titleEl.style.color = "#000000";
+      titleEl.style.color = computedFinalColor;
       onComplete?.();
       return;
     }
@@ -68,7 +70,7 @@ export function useColorWave(titleRef, options = {}) {
         }
 
         const START_COLOR = "rgb(217, 217, 217)";
-        const PEAK_COLOR = "#DFFF00";
+        const PEAK_COLOR = peakColor;
         const FINAL_COLOR = computedFinalColor;
 
         gsap.set(chars, { color: START_COLOR });
@@ -138,5 +140,5 @@ export function useColorWave(titleRef, options = {}) {
       }
       titleEl.style.color = computedFinalColor;
     };
-  }, [titleRef, waveWidth, secondsPerChar, triggerMode, scrollStart, onComplete]);
+  }, [titleRef, waveWidth, secondsPerChar, triggerMode, scrollStart, peakColor, onComplete]);
 }

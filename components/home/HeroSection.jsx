@@ -13,7 +13,7 @@ const HeroRing = dynamic(() => import("./HeroRing"), { ssr: false });
 export default function HeroSection() {
   const heroRef = useRef(null);
   const titleRef = useRef(null);
-  const ringWrapperRef = useRef(null);
+  const stageRef = useRef(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [inView, setInView] = useState(true);
 
@@ -41,32 +41,38 @@ export default function HeroSection() {
   }, []);
 
   useLayoutEffect(() => {
-    const ringWrapper = ringWrapperRef.current;
-    if (!ringWrapper) return;
+    const stageEl = stageRef.current;
+    if (!stageEl) return;
 
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (query.matches) {
-      gsap.set(ringWrapper, { autoAlpha: 1 });
+      stageEl.style.setProperty("--ring-o", "1");
       return;
     }
 
-    // Keep ring wrapper hidden before animation finishes
-    gsap.set(ringWrapper, { autoAlpha: 0 });
+    // Keep ring hidden via CSS variable before animation finishes
+    stageEl.style.setProperty("--ring-o", "0");
   }, []);
 
   // Shared colour wave hook for hero SYNTRIX heading
   useColorWave(titleRef, {
     waveWidth: 4,
-    secondsPerChar: 0.07,
+    secondsPerChar: 0.08,
     triggerMode: "idle",
+    peakColor: "#FEDF6A",
     onComplete: () => {
-      const ringWrapper = ringWrapperRef.current;
-      if (ringWrapper) {
-        gsap.to(ringWrapper, {
-          autoAlpha: 1,
-          duration: 0.9,
-          ease: "power3.out",
-        });
+      const stageEl = stageRef.current;
+      if (stageEl) {
+        const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (query.matches) {
+          stageEl.style.setProperty("--ring-o", "1");
+        } else {
+          gsap.to(stageEl, {
+            "--ring-o": 1,
+            duration: 0.9,
+            ease: "power3.out",
+          });
+        }
       }
     },
   });
@@ -80,7 +86,7 @@ export default function HeroSection() {
       aria-label="Syntrix introduction"
       data-no-reveal
     >
-      <div className="hero-stage">
+      <div ref={stageRef} className="hero-stage">
         <div className="hero-title-layer">
           <div className="hero-title-fit">
             <h1
@@ -94,16 +100,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div
-          ref={ringWrapperRef}
-          className="hero-ring-wrapper"
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            zIndex: 10,
-          }}
-        >
+        <div className="hero-ring-wrapper" style={{ display: "contents" }}>
           <HeroRing side="back" frameloop={frameloop} reducedMotion={reducedMotion} />
           <HeroRing side="front" frameloop={frameloop} reducedMotion={reducedMotion} />
         </div>

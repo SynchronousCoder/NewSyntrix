@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { projects } from "../../data/projects";
 import { useImageReveal } from "../animations/useImageReveal";
 import { useColorWave } from "../animations/useColorWave";
+import WAVE_COLORS from "../animations/waveColors";
 import "./FeaturedProjects.css";
 import RevealImage from "../animations/RevealImage";
 
@@ -16,11 +17,7 @@ export default function FeaturedProjects() {
   const containerRef = useRef(null);
   const headingRef = useRef(null);
 
-  // Centralized hook for reveal image animation across all 4 project image wrappers
-  useImageReveal(containerRef, {
-    selector: ".project-visual",
-    borderRadius: "4px",
-  });
+  // Removed centralized hook to avoid double animation; each image uses its own RevealImage component.
 
   // Shared hook for colour wave on the 2-line heading
   useColorWave(headingRef, {
@@ -28,6 +25,7 @@ export default function FeaturedProjects() {
     secondsPerChar: 0.09,
     triggerMode: "scroll",
     scrollStart: "top 85%",
+    peakColor: WAVE_COLORS.featuredProjects,
   });
 
   return (

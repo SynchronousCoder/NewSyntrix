@@ -1,5 +1,5 @@
 import RevealImage from "../../components/animations/RevealImage";
-import PageHeader from "../../components/shared/PageHeader";
+import AboutIntro from "../../components/pages/AboutIntro";
 import CurveTransition from "../../components/shared/CurveTransition/CurveTransition";
 import "../../components/pages/Editorial.css";
 
@@ -12,26 +12,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main className="editorial-page about-page">
-      <section className="editorial-hero" aria-labelledby="about-title">
-        <div className="editorial-hero-media">
-          <RevealImage
-            src="/image/blueDoor.png.png"
-            alt="A blue door standing in an open landscape"
-            width={458}
-            height={724}
-            priority
-          />
-          <div className="editorial-image-fade" aria-hidden="true" />
-        </div>
-        <PageHeader
-          className="editorial-hero-copy"
-          label="/ About Us"
-          title="Creativity Backed By Clarity."
-          titleId="about-title"
-          description="We're a creative agency driven by thoughtful design, meaningful ideas, and a genuine commitment to the brands and businesses we work with."
-        />
-        <div className="editorial-scroll">Scroll Down</div>
-      </section>
+      <AboutIntro />
       <section className="about-intro">
         <h2 className="about-statement">
           We&apos;re a close-knit creative team bringing strategy, design and

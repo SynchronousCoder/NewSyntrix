@@ -19,6 +19,7 @@
 }
 
 .hero-stage {
+  --ring-o: 0;
   position: relative;
   flex: 1;
   min-height: 22rem;
